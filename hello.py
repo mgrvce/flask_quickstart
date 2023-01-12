@@ -14,7 +14,8 @@ def show_post(post_id):
 def show_subpath(subpath):
     return f'Subpath {escape(subpath)}'
 
-"""
+
+# URL Building
 
 from flask import Flask, url_for
 
@@ -42,3 +43,32 @@ with app.test_request_context():
     print(url_for('login', next='/'))
     print(url_for('profile', username='John Doe'))
 
+
+# HTTP Methods
+
+from flask import request
+
+
+# this example keeps all methods for the route within one function. Useful if they use common data.
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        return do_the_login()
+    else:
+        return show_the_login_form()
+
+# or seperate views for diff methods w/ diff functions.
+
+@app.get('/login')
+def login_get():
+    return show_the_login_form()
+
+@app.post('/login')
+def login_post():
+    return do_the_login()
+
+
+"""
+
+
+        
