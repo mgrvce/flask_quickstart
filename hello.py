@@ -67,6 +67,14 @@ def login_get():
 def login_post():
     return do_the_login()
 
+# Rendering Templates
+
+from flask import render_template
+
+@app.route('/hello/')
+@app.route('/hello/<name>')
+def hello(name=None):
+    return render_template('hello.html', name=name)
 
 """
 
