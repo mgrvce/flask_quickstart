@@ -76,7 +76,13 @@ from flask import render_template
 def hello(name=None):
     return render_template('hello.html', name=name)
 
+#Context locals example
+
+from flask import Flask, request
+
+with app.test_request_contxt('/hello/', method='POST'):
+    assert request.path=='/hello'
+    assert request.method == 'POST'
+
 """
-
-
         
